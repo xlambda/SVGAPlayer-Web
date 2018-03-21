@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> SVGA Web Canvas Test </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <script src="http://assets.dwstatic.com/common/lib/??jszip/3.1.3/jszip.min.js,jszip/3.1.3/jszip-utils.min.js" charset="utf-8"></script>
+    <script src="/dist/SVGA.js"></script>
+</head>
+<body>
+    <div id="canvas"></div>
+    <script>
+        ( async ( ) => {
+            const parser = new SVGA.default.Parser( );
+            // console.log( SVGA );
+            // https://raw.githubusercontent.com/yyued/svga.io/master/assets/svga/sample-1_0.svga
+            // ./assets/svga-resources/rose.svga
+            const data = await parser.load( 'https://raw.githubusercontent.com/yyued/svga.io/master/assets/svga/sample-1_0.svga' );
+            console.log( data );
+
+            const player = new SVGA.default.Player( '#canvas' );
+
+            player.setVideoItem( data );
+            player.startAnimation( );
+        } )( );
+    </script>
+</body>
+</html>

@@ -8,27 +8,31 @@
   "main": "./build/svga.min.js",
   "types": "index.d.ts",
   "scripts": {
-    "start": "http-server ./ & webpack -w & open http://127.0.0.1:8080/tests/",
-    "build": "webpack"
+    "dev:canvas": "node ./scripts/dev.js --engine canvas",
+    "dev:createjs": "node ./scripts/dev.js --engine createjs",
+    "dev": "node ./scripts/dev.js --engine all",
+    "build:canvas": "webpack --config ./scripts/build.js --optimize-minimize --mode production --env.engine canvas",
+    "build:createjs": "webpack --config ./scripts/build.js --optimize-minimize --mode production --env.engine createjs",
+    "build": "npm run build:canvas && npm run build:createjs"
   },
   "author": "YYUED",
   "license": "Apache License 2.0",
   "dependencies": {
-    "source-map-loader": "^0.2.3",
-    "ts-loader": "^3.3.1",
-    "typescript": "^2.6.2"
+    "pako": "^1.0.6",
+    "protobufjs": "^6.8.6"
   },
   "devDependencies": {
-    "pako": "^1.0.6",
-    "protobufjs": "^6.8.0",
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "babel-loader": "^7.1.4",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "http-server": "^0.10.0",
-    "uglify-js": "^3.1.2",
-    "value-animator": "git+https://github.com/yyued/value-animator.git",
-    "webpack": "^3.6.0",
-    "ts-loader": "^3.3.1"
+    "browser-sync": "^2.23.6",
+    "chalk": "^2.3.2",
+    "ts-loader": "^4.0.1",
+    "typescript": "^2.7.2",
+    "uglifyjs-webpack-plugin": "^1.2.3",
+    "webpack": "^4.2.0",
+    "webpack-cli": "^2.0.11",
+    "yargs": "^11.0.0"
   }
 }
