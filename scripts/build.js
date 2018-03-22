@@ -4,6 +4,16 @@ const path = require('path');
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
+const { version } = require('../package.json');
+
+const banner = `
+/*!
+ * SVGAPlayer-Web v${ version }
+ * (c) 2016-2018 YY.UEDC
+ * Released under the Apache2.0 License.
+ */
+`;
+
 module.exports = function ( env ) {
 
     const engine = env.engine;
@@ -42,14 +52,12 @@ module.exports = function ( env ) {
                 interface: path.resolve( __dirname, '../src/interface' ),
                 util: path.resolve( __dirname, '../src/util' ),
                 engine: path.resolve( __dirname, '../src/engine' ),
-                RENDER_ENGINE: path.resolve( __dirname, `../src/engine/${ engine }` ),
+                PLAYER_ENGINE: path.resolve( __dirname, `../src/engine/${ engine }` ),
             },
         },
         plugins: [
-            new webpack.ProvidePlugin( { } ),
-            new UglifyJSPlugin( {
-                parallel: true,
-            } ),
+            new webpack.BannerPlugin( { banner, raw: true, entryOnly: false } ),
+            // new webpack.ProvidePlugin( { } ),
         ],
     };
 };

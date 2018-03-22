@@ -250,7 +250,7 @@ export class Renderer {
 
         const d = obj._d.replace( /([a-zA-Z])/g, '|||$1 ' ).replace(/,/g, ' ');
 
-        d.split('|||').forEach( ( segment ) => {
+        d.split( '|||' ).forEach( ( segment ) => {
             if ( segment.length == 0 ) { return void 0; }
 
             const firstLetter = segment.substr( 0, 1 );
@@ -463,7 +463,7 @@ export class Renderer {
         ctx.closePath( );
 
         if ( obj._styles && obj._styles.fill ) {
-            ctx.fill();
+            ctx.fill( );
         }
 
         if ( obj._styles && obj._styles.stroke ) {

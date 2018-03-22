@@ -72,7 +72,9 @@ export default class Player {
         }
 
         this.pauseAnimation( );
+
         this.currentFrame = frame;
+
         this._update( );
 
         if ( andPlay ) {
@@ -160,7 +162,7 @@ export default class Player {
     _init ( ) {
         if ( this.container instanceof HTMLDivElement || this.asChild ) {
             if ( this.container ) {
-                const existedCanvasElements = this.container.querySelectorAll('canvas');
+                const existedCanvasElements = this.container.querySelectorAll( 'canvas' );
 
                 for ( let index = 0; index < existedCanvasElements.length; index++ ) {
                     let element = existedCanvasElements[ index ];
@@ -241,7 +243,10 @@ export default class Player {
         let asParent = false;
 
         if ( this.drawingCanvas ) {
-            let scaleX = 1.0; let scaleY = 1.0; let translateX = 0.0; let translateY = 0.0;
+            let scaleX = 1.0;
+            let scaleY = 1.0;
+            let translateX = 0.0;
+            let translateY = 0.0;
 
             let targetSize;
 
@@ -263,6 +268,7 @@ export default class Player {
             else {
                 this.drawingCanvas.width = imageSize.width;
                 this.drawingCanvas.height = imageSize.height;
+
                 if ( this.contentMode === 'Fill' ) {
                     const scaleX = targetSize.width / imageSize.width;
                     const scaleY = targetSize.height / imageSize.height;
@@ -278,13 +284,14 @@ export default class Player {
                         const scale = targetSize.width / imageSize.width;
                         const translateX = ( imageSize.width * scale - imageSize.width ) / 2.0;
                         const translateY = ( imageSize.height * scale - imageSize.height ) / 2.0 + ( targetSize.height - imageSize.height * scale ) / 2.0;
-                        this.drawingCanvas.style.webkitTransform = this.drawingCanvas.style.transform = `matrix( ${ scaleX }, 0.0, 0.0, ${ scaleY }, ${ translateX }, ${ translateY } )`;
+
+                        this.drawingCanvas.style.webkitTransform = this.drawingCanvas.style.transform = `matrix( ${ scale }, 0.0, 0.0, ${ scale }, ${ translateX }, ${ translateY } )`;
                     }
                     else if ( ( imageRatio < viewRatio && this.contentMode === 'AspectFit' ) || ( imageRatio > viewRatio && this.contentMode === 'AspectFill' ) ) {
                         const scale = targetSize.height / imageSize.height;
                         const translateX = ( imageSize.width * scale - imageSize.width ) / 2.0 + ( targetSize.width - imageSize.width * scale ) / 2.0;
                         const translateY = (imageSize.height * scale - imageSize.height) / 2.0;
-                        this.drawingCanvas.style.webkitTransform = this.drawingCanvas.style.transform = `matrix( ${ scaleX }, 0.0, 0.0, ${ scaleY }, ${ translateX }, ${ translateY } )`;
+                        this.drawingCanvas.style.webkitTransform = this.drawingCanvas.style.transform = `matrix( ${ scale }, 0.0, 0.0, ${ scale }, ${ translateX }, ${ translateY } )`;
                     }
                 }
 
@@ -293,8 +300,13 @@ export default class Player {
         }
 
         if ( this.drawingCanvas === undefined || asParent === true ) {
-            let scaleX = 1.0; let scaleY = 1.0; let translateX = 0.0; let translateY = 0.0;
+            let scaleX = 1.0;
+            let scaleY = 1.0;
+            let translateX = 0.0;
+            let translateY = 0.0;
+
             let targetSize = { width: this.container !== undefined ? this.container.clientWidth : 0.0, height: this.container !== undefined ? this.container.clientHeight : 0.0 };
+
             let imageSize = this.videoItem.videoSize;
 
             if ( this.contentMode === 'Fill' ) {
