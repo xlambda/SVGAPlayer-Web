@@ -6,18 +6,19 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const { version } = require('../package.json');
 
-const banner = `
-/*!
- * SVGAPlayer-Web v${ version }
- * (c) 2016-2018 YY.UEDC
- * Released under the Apache2.0 License.
- */
-`;
-
 module.exports = function ( env ) {
 
     const engine = env.engine;
     const suffixName = env.engine === 'canvas' ? '' : env.engine;
+
+    const banner = `
+/*!
+ * SVGAPlayer-Web v${ version }
+ * Player Engine - ${ engine }
+ * (c) 2016-2018 YY.UEDC
+ * Released under the Apache2.0 License
+ */
+`
 
     return {
         entry: {
@@ -27,6 +28,7 @@ module.exports = function ( env ) {
             library: 'SVGA',
             libraryTarget: 'umd',
             filename: `[name]${ suffixName ? `.${ suffixName }` : suffixName }.min.js`,
+            libraryExport: 'default',
         },
         module: {
             rules: [

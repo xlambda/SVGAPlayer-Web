@@ -19,6 +19,7 @@ process.on( 'message', ( { engine } ) => {
             library: 'SVGA',
             libraryTarget: 'umd',
             filename: `[name]${ suffixName ? `.${ suffixName }` : suffixName }.js`,
+            libraryExport: 'default',
         },
         module: {
             rules: [

@@ -12,14 +12,28 @@ export default function ( url: string ): Promise<ArrayBuffer> {
             return void 0;
         }
 
-        JSZipUtils.getBinaryContent( url, ( err, data ) => {
-            if ( err ) {
-                console.error( `[Get SVGA ArrayBuffer Error]`, err );
+        if ( typeof JSZipUtils !== 'undefined' ) {
+            JSZipUtils.getBinaryContent( url, ( err, data ) => {
+                if ( err ) {
+                    console.error( `[Get SVGA ArrayBuffer Error]`, err );
 
-                reject( err );
-            };
+                    reject( err );
+                };
 
-            resolve( data );
-        } );
+                resolve( data );
+            } );
+        }
+        else {
+            const request = new XMLHttpRequest( );
+
+            request.open( 'GET', url, true );
+            request.responseType = 'arraybuffer';
+
+            request.onloadend = ( ) => {
+                resolve( request.response );
+            }
+
+            request.send( );
+        }
     } );
 }
