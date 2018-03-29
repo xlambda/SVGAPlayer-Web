@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/yyued/SVGAPlayer-Web.git"
   },
-  "main": "./build/svga.min.js",
+  "main": "./dist/svga.min.js",
   "types": "index.d.ts",
   "scripts": {
     "dev:canvas": "node ./scripts/dev.js --engine canvas",

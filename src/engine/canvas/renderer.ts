@@ -1,12 +1,12 @@
 'use strict';
 
-import BezierPath from 'modules/path/bezier'
-import EllipsePath from 'modules/path/ellipse'
-import RectPath from 'modules/path/rect'
+import BezierPath from 'modules/path/bezier';
+import EllipsePath from 'modules/path/ellipse';
+import RectPath from 'modules/path/rect';
 
 const validMethods = 'MLHVCSQRZmlhvcsqrz';
 
-export class Renderer {
+export default class Renderer {
 
     _owner = undefined;
     _prepared = false;

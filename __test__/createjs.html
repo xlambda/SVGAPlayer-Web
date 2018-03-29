@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> SVGA Web Createjs Test </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <script src="https://cdn.jsdelivr.net/npm/createjs@1.0.1/builds/1.0.0/createjs.min.js"></script>
+    <script src="//s1.yy.com/ued_web_static/lib/jszip/3.1.4/??jszip.min.js,jszip-utils.min.js" charset="utf-8"></script>
+    <script src="/dist/svga.createjs.js"></script>
+</head>
+<body>
+    <canvas id="canvas" width="750" height="750"></canvas>
+
+    <script>
+        var parser = new SVGA.Parser( '#canvas' );
+
+        var testSVGAFile = './assets/svga-resources/angel_v1.svga';
+        // var testSVGAFile = './assets/svga-resources/rose.svga';
+
+        parser.load( testSVGAFile ).then( function ( data ) {
+            var player = new SVGA.Player( '#canvas' );
+
+            player.setVideoItem( data );
+            player.startAnimation( );
+        } )
+    </script>
+</body>
+</html>
+

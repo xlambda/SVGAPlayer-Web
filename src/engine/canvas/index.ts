@@ -1,10 +1,9 @@
 'use strict';
 
-import { Renderer } from './renderer';
+import Renderer from './renderer';
 import Animator from 'modules/animator';
 
 export default class Player {
-
     public loops = 0;
     public clearsAfterStop = true;
     public fillMode = 'Forward';
