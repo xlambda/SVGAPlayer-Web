@@ -180,7 +180,7 @@ export class Renderer {
             ctx.fillStyle = "transparent"
         }
         if (styles && styles.lineDash) {
-            ctx.setLineDash(styles.lineDash);
+            //ctx.setLineDash(styles.lineDash);
         }
     }
 

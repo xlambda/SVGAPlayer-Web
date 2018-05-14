@@ -1,6 +1,8 @@
 const { ProtoMovieEntity } = require("./proto")
 const assignUtils = require('pako/lib/utils/common').assign;
 const inflate = require("pako/lib/inflate")
+const JSZip = require('jszip')
+const JSZipUtils = require('jszip-utils')
 const pako = {}
 assignUtils(pako, inflate);
 
@@ -18,7 +20,7 @@ const actions = {
 
     loadAssets: (url, cb, failure) => {
 
-        if (typeof JSZipUtils === "object" && typeof JSZip === "function") {
+        //if (typeof JSZipUtils === "object" && typeof JSZip === "function") {
             if (url.toString() == "[object File]"){
                 actions._readBlobAsArrayBuffer(url, function (arrayBufferSVGA) {
                     const dataHeader = new Uint8Array(arrayBufferSVGA, 0, 4)
@@ -60,7 +62,7 @@ const actions = {
                     }
                 });
             }
-        }
+        /*}
         else {
             const req = new XMLHttpRequest()
             req.open("GET", url, true);
@@ -69,7 +71,7 @@ const actions = {
                 actions.load_viaProto(req.response, cb, failure);
             }
             req.send()
-        }
+        }*/
     },
 
     load_viaProto: (arraybuffer, cb, failure) => {
